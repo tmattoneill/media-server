@@ -14,10 +14,10 @@ function chkpkg() {
 	do
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package|grep "install ok installed")
 
-		echo Checking for $package: $PKG_OK
+		printf "Checking for $package: $PKG_OK..."
 		if [ "" = "$PKG_OK" ]; then
-		  echo "Package $package not found. Setting up: $package."
-		  sudo apt-get --yes install $package
+		  printf "Package $package not found. Setting up: $package."
+		  sudo apt-get --yes install $package 1> /dev/null
 		fi
 	done
 }
@@ -26,11 +26,11 @@ chkpkg
 
 # Set up required groups and users needed for the server
 #
-GROUP_NAME=mediaserver # enter the name for the group managing media
+export GROUP_NAME=mediaserver # enter the name for the group managing media
 read -p "What name will you use for the server? [$GROUP_NAME]: " input
 GROUP_NAME=${input:-$GROUP_NAME}
 
-USER_NAME=plexmedia # enter the name for the user managing media
+export USER_NAME=plexmedia # enter the name for the user managing media
 read -p "Media manager username [$USER_NAME]: " input
 USER_NAME=${input:$USER_NAME}
 
@@ -43,7 +43,7 @@ export GID=$(getent group $GROUP_NAME | cut -d: -f3)
 printf "Group <$GROUP_NAME> created with GID: $GID."
 
 sudo useradd -m -s /bin/bash -g $GID $USER_NAME
-echo "Enter a password for <$USER_NAME>..."
+printf "Enter a password for <$USER_NAME>..."
 sudo passwd $USER_NAME
 
 printf "User <$USER_NAME> (uid: $(id -u $USER_NAME)) created in group <$GROUP_NAME>."
@@ -52,6 +52,8 @@ printf "User <$USER_NAME> (uid: $(id -u $USER_NAME)) created in group <$GROUP_NA
 #
 # first, define some variables. TODO: make this interactive with defaults
 export MOUNT_POINT=/ext_media
+read -p "Which root mount point would you like [$MOUNT_POINT]: " input
+MOUNT_POINT=$input:-$MOUNT_POINT
 
 export MEDIA_USER_NAME=$USER_NAME
 export MEDIA_USER_ID="$(id -u $USER_NAME)"
@@ -65,4 +67,4 @@ sudo chmod -R g+w /$MOUNT_POIINT/$GROUP_NAME
 
 # start the docker instances
 #
-docker-compose up -d
+#docker-compose up -d
