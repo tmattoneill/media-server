@@ -12,7 +12,7 @@ function chkpkg() {
 	for package in ${REQUIRED_PKGS[*]}
 	do
 		PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package|grep "install ok installed")
-		
+
 		echo Checking for $package: $PKG_OK
 		if [ "" = "$PKG_OK" ]; then
 		  echo "Package $package not found. Setting up: $package."
@@ -26,18 +26,17 @@ chkpkg
 # Set up required groups and users needed for the server
 #
 GROUP_NAME=mediaserver # enter the name for the group managing media
-USER_NAME=$SERVER_NAME # enter the name for the user managing media
+USER_NAME=plexmedia # enter the name for the user managing media
 
 # Setup media user & directories
 sudo addgroup $GROUP_NAME # Adding group `mediaserver' (GID 1002)
 export GID=$(getent group $GROUP_NAME | cut -d: -f3)
+
 sudo useradd -m -s /bin/bash -g $GID $USER_NAME
+echo "Enter a password for the new user..."
 sudo passwd $USER_NAME
 
-# create a root directory as a mountpoint for external media
-sudo mkdir -p /media/$GROUP_NAME
-sudo chown -R $USER_NAME:$GROUP_NAME /media/$GROUP_NAME
-sudo chmod -R g+w /media/$GROUP_NAME
-
-
-
+# create a root directory on the server as a mountpoint for external media
+sudo mkdir -p /ext_media/$GROUP_NAME
+sudo chown -R $USER_NAME:$GROUP_NAME /ext_media/$GROUP_NAME
+sudo chmod -R g+w /ext_media/$GROUP_NAME
