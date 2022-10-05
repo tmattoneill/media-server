@@ -1,4 +1,5 @@
-version: "1.0"
+version: "3.3"
+
 services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
@@ -39,7 +40,7 @@ services:
       - TZ=Europe/London
     volumes:
       - /homne/ubuntu/docker/radarr/data:/config
-      - /media/ext_media/tv
+      - /ext_media/plexmedia/tv:/tv
       - /home/ubuntu/downloads/complete:/downloads
     ports:
       - 8989:8989
