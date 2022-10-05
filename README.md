@@ -11,3 +11,8 @@ Setup files for a hosted media server
 Once logged into the fresh install as a user with sudo privilidges run:
 
     sudo apt update -y && sudo apt upgrade -y
+
+Next, clone the github repo onto the new machin:
+
+    git clone https://github.com/tmattoneill/media-server
+    
