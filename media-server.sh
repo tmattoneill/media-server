@@ -10,10 +10,11 @@
 
 # Set up some UI constants
 #
-export ESC='\033[0;'
-export red=$ESC'31m'
-export green=$ESC'32m'
-export cyan=$ESC'36m'
+export ESC='\033[0'
+export red=$ESC';31m'
+export green=$ESC';32m'
+export cyan=$ESC';36m'
+export default=$ESC'm'
 
 # Define our required packages
 #
@@ -37,34 +38,40 @@ chkpkg # executes the function chkpkg above using the required packages
 # Set up required groups and users needed for the server
 #
 export GROUP_NAME=mediaserver # enter the name for the group managing media
-read -p "What name will you use for the server? [$GROUP_NAME]: " input
+echo -e -n "\e${green}"
+read -p ">> What name will you use for the server? [$GROUP_NAME]: " input
 GROUP_NAME=${input:-$GROUP_NAME}
+printf "${default}Group <$GROUP_NAME> will be created.\n"
 
 export USER_NAME=plexmedia # enter the name for the user managing media
-read -p "Media manager username [$USER_NAME]: " input
+echo -e -n "\e${green}"
+read -p ">> Media manager username [$USER_NAME]: " input
 USER_NAME=${input:$USER_NAME}
+printf "${default}User <$USER_NAME> will be created.\n"
 
-printf "Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
+printf "${default}Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
 
 # Setup media user & directories
 #
 sudo addgroup $GROUP_NAME # Adding group `mediaserver' (GID 1002)
 export GID=$(getent group $GROUP_NAME | cut -d: -f3)
-printf "Group <$GROUP_NAME> created with GID: $GID.\n"
+printf "${default}Group <$GROUP_NAME> created with GID: $GID.\n"
 
 sudo useradd -m -s /bin/bash -g $GID $USER_NAME
-printf "Enter a password for <$USER_NAME>...\n"
+printf "${green}Enter a password for <$USER_NAME>...\n"
 sudo passwd $USER_NAME
 
-printf "User <$USER_NAME> (uid: $(id -u $USER_NAME)) created in group <$GROUP_NAME>.\n"
+printf "${default}User <$USER_NAME> (uid: $(id -u $USER_NAME)) created in group <$GROUP_NAME>.\n"
 
 # create a root directory on the server as a mountpoint for external media
 #
 # first, define some variables. TODO: make this interactive with defaults
 export MOUNT_POINT=ext_media
+
+echo -e -n "\e${green}"
 read -p "Which root mount point would you like [$MOUNT_POINT]: " input
 MOUNT_POINT=/$input:-$MOUNT_POINT
-printf "Mount point $MOUNT_POINT created at root.\n"
+printf "${default}Mount point $MOUNT_POINT created at root.\n"
 
 export MEDIA_USER_NAME=$USER_NAME
 export MEDIA_USER_ID="$(id -u $USER_NAME)"
@@ -72,9 +79,9 @@ export MEDIA_USER_ID="$(id -u $USER_NAME)"
 export MEDIA_GROUP_NAME=$GROUP_NAME
 export MEDIA_GROUP_ID=$GID
 
-sudo mkdir -p /$MOUNT_POINT/$GROUP_NAME
+sudo mkdir -p $MOUNT_POINT/$GROUP_NAME
 sudo chown -R $USER_NAME:$GROUP_NAME /$MOUNT_POINT/$GROUP_NAME
-sudo chmod -R g+w /$MOUNT_POIINT/$GROUP_NAME
+sudo chmod -R g+w $MOUNT_POINT/$GROUP_NAME
 
 # start the docker instances
 #
