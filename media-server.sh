@@ -43,7 +43,7 @@ read -p ">> What name will you use for the server? [$GROUP_NAME]: " input
 GROUP_NAME=${input:-$GROUP_NAME}
 printf "${default}Group <$GROUP_NAME> will be created.\n"
 
-export USER_NAME=plexmedia # enter the name for the user managing media
+export USER_NAME=$(whoami) # enter the name for the user managing media
 echo -e -n "\e${green}"
 read -p ">> Media manager username [$USER_NAME]: " input
 USER_NAME=${input:-$USER_NAME}
@@ -56,6 +56,8 @@ printf "${default}Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
 sudo addgroup $GROUP_NAME # Adding group `mediaserver' (GID 1002)
 export GID=$(getent group $GROUP_NAME | cut -d: -f3)
 printf "${default}Group <$GROUP_NAME> created with GID: $GID.\n"
+
+sudo usermod -aG $GROUP_NAME $(whoami)
 
 sudo useradd -m -s /bin/bash -g $GID $USER_NAME
 printf "${green}Enter a password for <$USER_NAME>...\n"

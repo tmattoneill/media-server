@@ -24,11 +24,11 @@ services:
       - PGID=1001
       - TZ=Europe/London
     volumes:
-      - /homne/ubuntu/docker/radarr/data:/config
-      - /media/ext_media/tv
+      - /home/ubuntu/docker/sonarr/data:/config
+      - /ext_media/tv
       - /home/ubuntu/downloads/complete:/downloads
     ports:
-      - 8989:8989
+      - 8060:8060
     restart: unless-stopped
 
   radarr:
@@ -39,9 +39,9 @@ services:
       - PGID=1001
       - TZ=Europe/London
     volumes:
-      - /homne/ubuntu/docker/radarr/data:/config
-      - /ext_media/plexmedia/tv:/tv
+      - /home/ubuntu/docker/radarr/data:/config
+      - /ext_media/movies:/movies
       - /home/ubuntu/downloads/complete:/downloads
     ports:
-      - 8989:8989
+      - 8050:8050
     restart: unless-stopped
