@@ -46,7 +46,7 @@ printf "${default}Group <$GROUP_NAME> will be created.\n"
 export USER_NAME=plexmedia # enter the name for the user managing media
 echo -e -n "\e${green}"
 read -p ">> Media manager username [$USER_NAME]: " input
-USER_NAME=${input:$USER_NAME}
+USER_NAME=${input:-$USER_NAME}
 printf "${default}User <$USER_NAME> will be created.\n"
 
 printf "${default}Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
@@ -70,7 +70,7 @@ export MOUNT_POINT=ext_media
 
 echo -e -n "\e${green}"
 read -p "Which root mount point would you like [$MOUNT_POINT]: " input
-MOUNT_POINT=/$input:-$MOUNT_POINT
+MOUNT_POINT=/${input:-$MOUNT_POINT}
 printf "${default}Mount point $MOUNT_POINT created at root.\n"
 
 export MEDIA_USER_NAME=$USER_NAME
