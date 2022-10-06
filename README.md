@@ -1,5 +1,5 @@
 # media-server
-Setup files for a hosted media server
+Setup files for a self-hosted media server
 
 # Requirements
 * Server with 500GB HDD
