@@ -16,7 +16,7 @@ export green=$ESC';32m'
 export cyan=$ESC';36m'
 export default=$ESC'm'
 
-# Define our required packages
+# Define required packages
 #
 export REQUIRED_PKGS=(tmux ranger net-tools git python3 docker-compose)
 
@@ -33,28 +33,41 @@ function chkpkg() {
 	done
 }
 
+clear
+
 chkpkg # executes the function chkpkg above using the required packages
 
 # Set up required groups and users needed for the server
 #
 export GROUP_NAME=mediaserver # enter the name for the group managing media
-echo -e -n "\e${green}"
-read -p ">> What name will you use for the server? [$GROUP_NAME]: " input
+echo -e -n "\e${green}"       # set prompt to GREEN
+read -p ">> Media management group [$GROUP_NAME]: " input
 GROUP_NAME=${input:-$GROUP_NAME}
-printf "${default}Group <$GROUP_NAME> will be created.\n"
+GROUP_EXISTS=$(grep $GROUP_NAME /etc/group)
 
-export USER_NAME=$(whoami) # enter the name for the user managing media
+if [ "" != "$GROUP_EXISTS" ]; then
+    printf "${default}$GROUP_NAME exists. OK.\n"
+else
+    printf "${default}Group <$GROUP_NAME> will be created.\n"
+    sudo groupadd $GROUP_NAME
+fi
+
+printf "Adding $(whoami) to $GROUP_NAME\n"
+sudo usermod -aG $GROUP_NAME $(whoami)
+
+export USER_NAME=$(whoami)
+
 echo -e -n "\e${green}"
 read -p ">> Media manager username [$USER_NAME]: " input
 USER_NAME=${input:-$USER_NAME}
-printf "${default}User <$USER_NAME> will be created.\n"
-
-printf "${default}Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
+if [ $USER_NAME != $(whoami) ]; then
+    printf "${default}User <$USER_NAME> will be created.\n"
+    printf "${default}Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
+fi
 
 # Setup media user & directories
 #
-sudo groupass $GROUP_NAME # Adding group `mediaserver' (GID 1002)
-sudo groupadd docker
+sudo groupadd docker 
 
 export GID=$(getent group $GROUP_NAME | cut -d: -f3)
 printf "${default}Group <$GROUP_NAME> created with GID: $GID.\n"
