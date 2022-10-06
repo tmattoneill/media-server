@@ -102,5 +102,13 @@ sudo chown -R $USER_NAME:$GROUP_NAME /$MOUNT_POINT/$GROUP_NAME
 sudo chmod -R g+w $MOUNT_POINT/$GROUP_NAME
 
 # start the docker instances
-#
+echo -e -n "\e${green}"
+read -p ">> Run docker-compose now? [Y/n]: " input
+echo -e -n "\e${default}"
+
+if [ $input = "Y" ] || [ $input = ""]; then
+    sudo docker-compose up -d
+fi
+
+printf "All done!\n"
 #docker-compose up -d
