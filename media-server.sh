@@ -53,7 +53,9 @@ printf "${default}Creating user <$USER_NAME> and group <$GROUP_NAME>...\n"
 
 # Setup media user & directories
 #
-sudo addgroup $GROUP_NAME # Adding group `mediaserver' (GID 1002)
+sudo groupass $GROUP_NAME # Adding group `mediaserver' (GID 1002)
+sudo groupadd docker
+
 export GID=$(getent group $GROUP_NAME | cut -d: -f3)
 printf "${default}Group <$GROUP_NAME> created with GID: $GID.\n"
 
@@ -62,6 +64,7 @@ sudo usermod -aG $GROUP_NAME $(whoami)
 sudo useradd -m -s /bin/bash -g $GID $USER_NAME
 printf "${green}Enter a password for <$USER_NAME>...\n"
 sudo passwd $USER_NAME
+sudo usermod -aG docker $USER_NAME      # Add a docker group so we won't have to sudo
 
 printf "${default}User <$USER_NAME> (uid: $(id -u $USER_NAME)) created in group <$GROUP_NAME>.\n"
 
