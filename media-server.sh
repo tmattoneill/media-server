@@ -110,5 +110,15 @@ if [ $input = "Y" ] || [ $input = ""]; then
     sudo docker-compose up -d
 fi
 
+# TODO
+# add additional directories to the mount point
+# create symbolic links to the mount point directories
+# add in if user exists logic + reset password prompting
+# show instructions of what to do next for configuring the programs
+# export variables / settings for use in the docker-compose file (e.g. mount locations)
+
+
+
 printf "All done!\n"
 #docker-compose up -d
+
