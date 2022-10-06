@@ -28,7 +28,7 @@ function chkpkg() {
 		printf "${cyan}Checking for $package: $PKG_OK...\n"
 		if [ "" = "$PKG_OK" ]; then
 		  printf "Package $package not found. Setting up: $package.\n"
-		  sudo apt-get --yes install $package 1> /dev/null
+		  sudo apt-get --yes install $package --fix-missing > /dev/null
 		fi
 	done
 }
