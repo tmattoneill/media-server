@@ -12,7 +12,14 @@ Once logged into the fresh install as a user with sudo privilidges run:
 
     sudo apt update -y && sudo apt upgrade -y
 
-Next, clone the github repo onto the new machin:
+Next, clone the github repo onto the new machine:
 
     git clone https://github.com/tmattoneill/media-server
     
+Go into the new directory
+
+    cd media-server
+    
+and run the install script:
+
+    source ./media-server.sh
