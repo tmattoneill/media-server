@@ -10,7 +10,7 @@ Setup files for a hosted media server
 # Setting up the server
 Once logged into the fresh install as a user with sudo privilidges run:
 
-    sudo apt update -y && sudo apt upgrade -y
+    ![#c5f015]sudo apt update -y && sudo apt upgrade -y
 
 Next, clone the github repo onto the new machine:
 
