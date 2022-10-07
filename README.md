@@ -32,4 +32,4 @@ and run the install script:
 
 ## Configuring Sonarr (Movies)
 
-# Confguring Plex (Media Server)
+## Confguring Plex (Media Server)
