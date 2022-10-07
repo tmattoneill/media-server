@@ -7,7 +7,7 @@ Setup files for a self-hosted media server
 * Ubuntu Server LTS 20+
 * External storage as needed
 
-# Setting up the server
+## Setting up the server
 Once logged into the fresh install as a user with sudo privilidges run:
 
     sudo apt update -y && sudo apt upgrade -y
@@ -23,3 +23,13 @@ Go into the new directory
 and run the install script:
 
     source ./media-server.sh
+
+## Configuring the Server
+
+## Configuring SABNZBD
+
+## Configuring Radarr (TV)
+
+## Configuring Sonarr (Movies)
+
+# Confguring Plex (Media Server)
