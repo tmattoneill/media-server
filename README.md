@@ -27,7 +27,7 @@ and run the install script:
 ## Configuring the Server
 
 ## Configuring SABNZBD
-
+![SABNZBD Initial Screen](/images/sabnzbd)001.jpg?raw=true "Initial Screen")
 ## Configuring Radarr (TV)
 
 ## Configuring Sonarr (Movies)
