@@ -28,6 +28,11 @@ and run the install script:
 
 ## Configuring SABNZBD
 <img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_001.png" width=66%>
+<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_002.png" width=66%>
+<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_003.png" width=66%>
+<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_004.png" width=66%>
+<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_005a.png" width=66%>
+<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_005b.png" width=66%>
 
 ## Configuring Radarr (TV)
 
