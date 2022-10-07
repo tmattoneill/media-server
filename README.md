@@ -27,7 +27,7 @@ and run the install script:
 ## Configuring the Server
 
 ## Configuring SABNZBD
-<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_001.png" width="500">
+<img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_001.png" width=66%>
 
 ## Configuring Radarr (TV)
 
