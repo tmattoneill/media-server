@@ -1,7 +1,7 @@
 # media-server
 Setup files for a self-hosted media server
 
-# Requirements
+## Requirements
 * Server with 500GB HDD
 * 16GB RAM
 * Ubuntu Server LTS 20+
