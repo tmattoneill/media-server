@@ -28,7 +28,7 @@ services:
       - /ext_media/tv
       - /home/ubuntu/downloads/complete:/downloads
     ports:
-      - 8060:8060
+      - 8060:8989
     restart: unless-stopped
 
   radarr:
@@ -43,7 +43,7 @@ services:
       - /ext_media/movies:/movies
       - /home/ubuntu/downloads/complete:/downloads
     ports:
-      - 8050:8050
+      - 8050:7878
     restart: unless-stopped
 
   plex:

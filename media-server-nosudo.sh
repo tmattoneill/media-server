@@ -102,7 +102,6 @@ printf "${default}User <$USER_NAME> (uid: $(id -u $USER_NAME)) created in group 
 
 # create a root directory on the server as a mountpoint for external media
 #
-# first, define some variables. TODO: make this interactive with defaults
 export MOUNT_POINT=ext_media
 
 echo -e -n "\e${green}"
@@ -135,9 +134,6 @@ fi
 # add in if user exists logic + reset password prompting
 # show instructions of what to do next for configuring the programs
 # export variables / settings for use in the docker-compose file (e.g. mount locations)
-
-
+# output the IP address of the servers / cleanup final message
 
 printf "All done!\n"
-#docker-compose up -d
-
