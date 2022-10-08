@@ -44,6 +44,7 @@ function is_sourced() {
    else  # Add additional POSIX-compatible shell names here, if needed.
        case ${0##*/} in dash|-dash|bash|-bash|ksh|-ksh|sh|-sh) return 0;; esac
    fi
+
    return 1  # NOT sourced.
  }
 
@@ -51,7 +52,11 @@ clear
 
 if [[ $(id -u) -ne 0 ]] ; then 
     printf "$e${red}Elevated privledges required. Try sudo.$e${default}\n"
-    exit
+    if [ is_sourced ]; then
+        exit
+    else
+        return 1
+    fi
 fi
 
 chkpkg # executes the function chkpkg above using the required packages
