@@ -6,7 +6,7 @@ services:
     environment:
       - PUID=${PUID}
       - GUID=${GUID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     ports:
       - 8020:8080
     volumes:
@@ -22,7 +22,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${GUID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - /home/ubuntu/docker/sabnzbd/data:/config
       - /home/ubuntu/downloads/complete:/downloads
@@ -35,9 +35,9 @@ services:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1001
-      - TZ=Europe/London
+      - PUID=${PUID}
+      - PGID=${GUID}
+      - TZ=${TZ}
     volumes:
       - /home/ubuntu/docker/sonarr/data:/config
       - /ext_media/tv
@@ -50,9 +50,9 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1001
-      - TZ=Europe/London
+      - PUID=${PUID}
+      - PGID=${GUID}
+      - TZ=${TZ}
     volumes:
       - /home/ubuntu/docker/radarr/data:/config
       - /ext_media/movies:/movies
@@ -66,30 +66,14 @@ services:
     container_name: plex
     network_mode: host
     environment:
-      - PUID=1000
-      - PGID=1001
+      - PUID=${PUID}
+      - PGID=${GUID}
+      - TZ=${TZ}
       - VERSION=docker
-      - PLEX_CLAIM= #optional
+      - PLEX_CLAIM= #optional; get from Plex
     volumes:
       - /home/ubuntu/docker/plex/data/config:/config
       - /ext_media/tv:/libraries/tv
       - /ext_media//movies:/libraries/movies
       - /dev/shm/:/config/transcode
     restart: unless-stopped
-
-  jellyfin:
-    image: jellyfin/jellyfin
-    container_name: jellyfin
-    network_mode: "host"
-    environment:
-      - PUID=1000
-      - PGID=1001
-      - TZ=Europe/London
-    volumes:
-      - /home/ubuntu/docker/jellyfin/config:/config
-      - /dev/shm/cache:/cache
-      - /ext_media:/media
-      # - /path/to/media2:/media2:ro
-    restart: "unless-stopped"
-    # Optional - alternative address used for autodiscovery
-      # - JELLYFIN_PublishedServerUrl=http://example.com
