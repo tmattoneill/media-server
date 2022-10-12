@@ -1,12 +1,27 @@
 version: "3.3"
 
 services:
+  filebrowser:
+    image: hurlenko/filebrowser
+    environment:
+      - PUID=${PUID}
+      - GUID=${GUID}
+      - TZ=Europe/London
+    ports:
+      - 8020:8080
+    volumes:
+      - ${HOME}/docker/config/filebrowser:/config
+      - ${HOME}/downloads:/data/downloads
+      - ${EXT_MOUNT}/tv:/data/tv
+      - ${EXT_MOUNT}/movies:/data/movies
+    restart: unless-stopped
+
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     environment:
-      - PUID=1000
-      - PGID=1001
+      - PUID=${PUID}
+      - PGID=${GUID}
       - TZ=Europe/London
     volumes:
       - /home/ubuntu/docker/sabnzbd/data:/config
