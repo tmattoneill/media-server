@@ -24,6 +24,20 @@ and run the install script:
 
     source ./media-server.sh
 
+## Setting up git
+
+* https://blog.corsego.com/aws-cloud9-github-ssh
+
+    ssh-keygen -t ed25519 -C "[GITHUB_EMAIL_LOGIN]" \
+    eval "$(ssh-agent)" \
+    ssh-add ~/.ssh/id_ed25519.pub \
+    nano ~./ssh/id_ed25519.pub \
+    ssh -T git@github.com \
+    git remote -v \
+    cd ~/media-server/ \
+    git remote -v \
+    git remote set-url origin git@github.com:[USERNAME]/[REPO].git
+
 ## Configuring the Server
 
 ## Configuring SABNZBD
