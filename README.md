@@ -50,8 +50,10 @@ git remote set-url origin git@github.com:[USERNAME]/[REPO].git
 <img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_005a.png" width=66%>
 <img src="https://github.com/tmattoneill/media-server/blob/main/images/sabnzbd_005b.png" width=66%>
 
-## Configuring Radarr (TV)
+## Configuring Radarr (Movies)
 
-## Configuring Sonarr (Movies)
+## Configuring Sonarr (TV)
+
+ * https://www.rapidseedbox.com/blog/ultimate-guide-to-sonarr
 
 ## Confguring Plex (Media Server)
