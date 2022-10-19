@@ -1,6 +1,7 @@
 version: "3.3"
+
 # Required system defined constants
-#
+# --------------------------------
 # HOME: Media user's home directory 
 # EXT_MOUNT: Directory where external media is mounted
 # TZ: Media server's timezome
@@ -8,15 +9,17 @@ version: "3.3"
 # GUID: System group ID
 #
 # Ports
+# ----
 # Filebrowser: 8010 -> 8080
 # Radarr:    : 8050 -> 7878
 # Sonarr     : 8060 -> 8989
 # Sabnzbd    : 8080 -> 8080
-# Plex       : 32400
+# Plex       : 32400/web
 
 services:
   filebrowser:
     image: hurlenko/filebrowser
+    container_name: filebrowser
     environment:
       - PUID=${PUID}
       - GUID=${GUID}
@@ -90,6 +93,8 @@ services:
       - ${EXT_MOUNT}/tv:/libraries/tv
       - ${EXT_MOUNT}/movies:/libraries/movies
       - /dev/shm/:/config/transcode #OPTIONAL: sets shared memory to the transcode directory
+    ports:
+      - 8000:32400
     restart: unless-stopped
 
 # END #
