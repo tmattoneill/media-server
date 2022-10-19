@@ -15,6 +15,7 @@ version: "3.3"
 # Sonarr     : 8060 -> 8989
 # Sabnzbd    : 8080 -> 8080
 # Plex       : 32400/web
+# Futher Plex details: https://www.thesmarthomebook.com/2022/01/18/set-up-plex-server-with-docker-compose/
 
 services:
   filebrowser:
@@ -81,11 +82,12 @@ services:
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
-    network_mode: host
+#    network_mode: host
     environment:
       - PUID=${PUID}
       - PGID=${GUID}
       - TZ=${TZ}
+      - HOSTNAME=test_media_server
       - VERSION=docker
       - PLEX_CLAIM= #optional; get from Plex
     volumes:
@@ -94,7 +96,7 @@ services:
       - ${EXT_MOUNT}/movies:/libraries/movies
       - /dev/shm/:/config/transcode #OPTIONAL: sets shared memory to the transcode directory
     ports:
-      - 8000:32400
+      - "8000:32400/tcp"
     restart: unless-stopped
 
 # END #
