@@ -32,7 +32,7 @@ and run the install script:
 ssh-keygen -t ed25519 -C "[GITHUB_EMAIL_LOGIN]" \
 eval "$(ssh-agent)" \
 ssh-add ~/.ssh/id_ed25519.pub \
-nano ~./ssh/id_ed25519.pub \
+nano ~/.ssh/id_ed25519.pub \
 ssh -T git@github.com \
 git remote -v \
 cd ~/media-server/ \
