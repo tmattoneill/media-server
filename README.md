@@ -40,12 +40,11 @@ ssh-keygen -t ed25519 -C "[GITHUB_EMAIL_LOGIN]"
 ```
 
 ```
-eval "$(ssh-agent)" \
-ssh-add ~/.ssh/id_ed25519.pub \
-nano ~/.ssh/id_ed25519.pub \
-ssh -T git@github.com \
-cd ~/media-server/ \
-git remote -v \
+eval "$(ssh-agent)" && \
+ssh-add ~/.ssh/id_ed25519.pub && chmod 600 ~/.ssh/id_ed25519.pub && \
+ssh -T git@github.com && \
+cd ~/media-server/ && \
+git remote -v 
 ```
 
 ```
