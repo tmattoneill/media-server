@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.7"
 
 # Required system defined constants
 # --------------------------------
@@ -10,11 +10,12 @@ version: "3.3"
 #
 # Ports
 # ----
+# Plex       : 8000 -> 32400/web
 # Filebrowser: 8010 -> 8080
 # Radarr:    : 8050 -> 7878
 # Sonarr     : 8060 -> 8989
 # Sabnzbd    : 8080 -> 8080
-# Plex       : 32400/web
+#
 # Futher Plex details: https://www.thesmarthomebook.com/2022/01/18/set-up-plex-server-with-docker-compose/
 
 services:
