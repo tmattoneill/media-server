@@ -29,7 +29,7 @@ and run the install script:
 * Start by configuring git locally
 
 ```
-git config --global user.email "[YOUR EMAIL]" \
+git config --global user.email "[YOUR EMAIL]" &&
 git config --global user.name "[YOUR FULL NAME]"
 ```
 
