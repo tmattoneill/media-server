@@ -26,6 +26,13 @@ and run the install script:
 
 ## Setting up git [OPTIONAL]
 
+* Start by configuring git locally
+
+```
+git config --global user.email "[YOUR EMAIL]"
+git config --global user.name "[YOUR FULL NAME]"
+```
+
 * Instructions from: https://blog.corsego.com/aws-cloud9-github-ssh
 
 ```
@@ -34,10 +41,9 @@ eval "$(ssh-agent)" \
 ssh-add ~/.ssh/id_ed25519.pub \
 nano ~/.ssh/id_ed25519.pub \
 ssh -T git@github.com \
-git remote -v \
 cd ~/media-server/ \
 git remote -v \
-git remote set-url origin git@github.com:[USERNAME]/[REPO].git
+git remote set-url origin git@github.com:[GITHUB_USERNAME]/[GIT_REPO_NAME].git
 ```
 
 ## Configuring the Server
