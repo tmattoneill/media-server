@@ -22,7 +22,7 @@ Go into the new directory
     
 and run the install script:
 
-    source ./media-server.sh
+    source ./media-server-nosudo.sh
 
 ## Setting up git [OPTIONAL]
 
