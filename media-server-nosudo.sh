@@ -52,6 +52,7 @@ clear
 
 if [[ $(id -u) -ne 0 ]] ; then 
     printf "$e${red}Elevated privledges required. Try sudo.$e${default}\n"
+    
     if [ is_sourced ]; then
         exit
     else
